@@ -45,28 +45,6 @@ client.on('messageCreate', async message => {
     }
 
 
-    if(message.content === prefix + 'eval') {
-        if (message.author.id !== "873648766761189408") return;
-
-            const code = args.join(" ");
-            if(!code) return message.reply("Please provide some code to evaluate");
-
-            try {
-            const result = await eval(code);
-            let output = result;
-            if(typeof result !== "string") output = require("util").inspect(result);
-
-            let embed2 = new Discord.MessageEmbed()
-            .setAuthor("Eval", message.author.avatarURL())
-            .addField("Input", `\`\`\`${code}\`\`\``)
-            .addField("Output", `\`\`\`${output}\`\`\``)
-            .setColor("RANDOM")
-
-            message.channel.send({ embeds: [embed2]});
-        } catch (err) {
-            message.channel.send(`\`ERROR\` \`\`\`xl\n${err}\n\`\`\``)
-        }
-    }
 });
 
 client.on('interactionCreate', async interaction => {
